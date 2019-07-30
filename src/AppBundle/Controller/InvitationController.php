@@ -32,10 +32,10 @@ class InvitationController extends Controller
     }
 
     /**
-     * @Route("/api/getall")
+     * @Route("/api/getall/{id}")
 	 * @Method("GET")
      */
-    public function getAllInvitationAction()
+    public function getAllInvitationForUserAction($id)
     {
 	    $posts = $this->getDoctrine()->getRepository('AppBundle:Invitation')->findAll();	
 		$result_data = (object)[];
