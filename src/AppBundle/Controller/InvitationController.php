@@ -37,17 +37,17 @@ class InvitationController extends Controller
      */
     public function getAllInvitationAction()
     {
-	    $post = $this->getDoctrine()->getRepository('AppBundle:Invitation')->findAll();	
+	    $posts = $this->getDoctrine()->getRepository('AppBundle:Invitation')->findAll();	
 		$result_data = (object)[];
-		if(!$post){
+		if(!$posts){
 			$result_data = (object) [
 			'status'=>"error"
 			];
 		}else{
-			['post'=>$post];
+			['posts'=>$posts];
 		}
 		
-        return $this->render('AppBundle:Invitation:get_all_invitation.html.twig',['post'=> $post]);
+        return $this->render('AppBundle:Invitation:get_all_invitation.html.twig',['posts'=> $posts]);
     }
 
     /**
