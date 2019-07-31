@@ -54,7 +54,7 @@ class InvitationController extends Controller
 
     /**
      * @Route("edit")
-     *
+     */
     public function editInvitationStatusAction()
     {
         return $this->render('AppBundle:Invitation:edit_invitation_status.html.twig', array(
