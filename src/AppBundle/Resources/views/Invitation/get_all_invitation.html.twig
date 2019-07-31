@@ -30,6 +30,11 @@
             </form>
         </div>
       </nav>
+    <div class="container">
+      {% for success_message in app.session.flashbag.get('message')%}
+      <div class="alert alert-success">{{success_message}}</div>
+      {% endfor %}
+    </div>
     <div>
       <h2 >{{ dump(app.request.attributes.get('_route_params').id) }}</h2> 
       <h3>{{ dump(app.request.attributes) }}</h3>
