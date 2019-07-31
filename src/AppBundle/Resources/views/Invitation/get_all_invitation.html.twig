@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{absolute_url(asset('css/bootstrap.min.css'))}}"/>
   </head>
   <body>
-    <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,17 +17,11 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">
-                Home <span class="sr-only">(current)</span>
+                Sent Invitations <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#">Invited </a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -37,29 +30,34 @@
             </form>
         </div>
       </nav>
-    </div>
     <div>
-      <table clas="table table-striped table-hover">
+      <h2 >{{ dump(app.request.attributes.get('_route_params').id) }}</h2> 
+      <h3>{{ dump(app.request.attributes) }}</h3>
+        <a href="{{ absolute_url(asset(''))}}app_dev.php/create/{{app.request.attributes.get('_route_params').id}}" class="btn btn-primary">Create</a>
+      <h3></h3>
+      <table class="table table-hover">
         <thead>
           <tr>
-            <th>Sender Name</th>
-            <th>Invited Name</th>
-            <th>Message</th>
-            <th>Status</th>
+            <th scope="col">Sent Invitations</th>
+            <th scope="col">Id</th>
+            <th scope="col">Sender Name</th>
+            <th scope="col">Invited Name</th>
+            <th scope="col">Message</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
           {% for post in posts %}
-          <tr>
+          <tr class="table-active">
+            <th scope="row"></th>
             <td>{{post.id}}</td>
-            <td>{{post.senderName}}</td>
-            <td>{{post.invitedName}}</td>
+            <td>{{post.sendername}}</td>
+            <td>{{post.invitedname}}</td>
             <td>{{post.message}}</td>
             <td>{{post.status}}</td>
             <td>
-              <a href="" class="btn btn-primary btn-xs">View</a>
-              <a href="" class="btn btn-success btn-xs">Edit</a>
-              <a href="" class="btn btn-danger btn-xs">Delete</a>
+              <a href="{{ absolute_url(asset(''))}}app_dev.php/edit_invitation_status/{{post.id}}" class="btn btn-success btn-xs">Edit</a>
+              <a href="" class="btn btn-danger btn-xs">Cancel Invitation</a>
             </td>
           </tr>
           {% else %}

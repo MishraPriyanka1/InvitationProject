@@ -1,0 +1,40 @@
+AppBundle\Entity\Invitation:
+    type: entity
+    table: invitation
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        senderName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: senderName
+        invitedName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: invitedName
+        message:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        status:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

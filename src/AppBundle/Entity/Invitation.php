@@ -155,5 +155,15 @@ class Invitation
     {
         return $this->status;
     }
-}
+    /**
+     * @var string
+     */
+  
 
+    /**
+     * @var string
+     */
+    
+
+
+}

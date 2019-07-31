@@ -1,0 +1,46 @@
+AppBundle\Entity\Users:
+    type: entity
+    table: users
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        salt:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        joined:
+            type: datetime
+            nullable: false
+        group:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }
