@@ -11,8 +11,11 @@ if(Input::exist()) {
 		if($validation->passed()){
 		   $user = new User();
 		   $login = $user->login(Input::get('username'), Input::get('password'));
+		   $userId= $user->data()->id;
+		   
 		   if($login) {
-		   	   Redirect::to('web/app_dev.php/api/getall');
+		     Header("Location: web/app_dev.php/api/getall/".$userId);
+		   	 
 		   }else{
 		   	   echo '<p>Sorry, login failed</p>';
 		   }
