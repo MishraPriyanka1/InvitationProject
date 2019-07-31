@@ -37,4 +37,9 @@ AppBundle\Entity\Invitation:
             length: 255
             options:
                 fixed: false
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false    
     lifecycleCallbacks: {  }

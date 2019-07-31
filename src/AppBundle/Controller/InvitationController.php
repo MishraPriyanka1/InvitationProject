@@ -14,23 +14,28 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class InvitationController extends Controller
 {
     /**
-     * @Route("view")
+     * @Route("view/{userId}")
      */
-    public function getInvitationAction($invitationId)
+    public function getInvitationAction($userId)
     {
-	    $invitation = $this->getDoctrine()
-		->getRepository('AppBundle:Invitation')
-		->find($invitationId);
-		
+	     $em = $this->getDoctrine()->getManager();
+	     $query = $em->createQuery("SELECT u.username FROM AppBundle:Users u  WHERE u.id = $userId");
+		  $user = $query->getResult();
+         echo $user[0]['username'];
+		 
+	         $invitations = $em->createQuery("SELECT i FROM AppBundle:Invitation i  WHERE i.invitedName = :invitedname");
+		     $invitations->setParameter('invitedname',$user[0]['username']);
+			 $invited = $invitations->getResult();
 		$result_data = (object)[];
 		
-		if(!$invitation){
+		if(!$invited){
 		$result_data =(object)[
 		'status'=> "error"
-		];
-			
+		];		
+		}else{
+			['invitations'=> $invited];
 		}
-        return $this->render('AppBundle:Invitation:receiveinvitation.html.twig');
+        return $this->render('AppBundle:Invitation:receiveinvitation.html.twig',['invitations'=>$invited]);
     }
 
     /**
@@ -39,7 +44,8 @@ class InvitationController extends Controller
      */
     public function getAllInvitationForUserAction($id)
 	{
-	    $posts = $this->getDoctrine()->getRepository('AppBundle:Invitation')->findAll();	
+	    $posts = $this->getDoctrine()->getRepository('AppBundle:Invitation')
+		         ->findBy(array('userId'=>$id));	
 		$result_data = (object)[];
 		
 		if(!$posts){
@@ -81,11 +87,13 @@ class InvitationController extends Controller
 						 $invitedname = $form['invitedname']->getData();
 						 $message = $form['message']->getData();
 						 $status = $form['status']->getData();
+						 $userId =  $id;
 						 
 						 $invitation->setSendername($sendername);
 						 $invitation->setInvitedname($invitedname);
 						 $invitation->setMessage($message);
 						 $invitation->setStatus($status);
+						 $invitation->setUserId($userId);
 
 						 $em = $this->getDoctrine()->getManager();
 						 $em->persist($invitation);

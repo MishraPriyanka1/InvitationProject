@@ -17,17 +17,11 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">
-                Home <span class="sr-only">(current)</span>
+                Invited <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="{{ absolute_url(asset(''))}}app_dev.php/api/getall/{{app.request.attributes.get('_route_params').userId}}">Sent Invitation</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -47,13 +41,13 @@
           </tr>
         </thead>
         <tbody>
-          {% for post in posts %}
+          {% for invitation in invitations %}
           <tr>
-            <td>{{post.id}}</td>
-            <td>{{post.senderName}}</td>
-            <td>{{post.invitedName}}</td>
-            <td>{{post.message}}</td>
-            <td>{{post.status}}</td>
+            <td>{{invitation.id}}</td>
+            <td>{{invitation.senderName}}</td>
+            <td>{{invitation.invitedName}}</td>
+            <td>{{invitation.message}}</td>
+            <td>{{invitation.status}}</td>
             <td>
               <a href="" class="btn btn-success btn-xs">Accept/Decline</a>
              
