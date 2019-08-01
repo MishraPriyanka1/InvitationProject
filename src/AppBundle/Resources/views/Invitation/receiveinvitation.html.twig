@@ -8,7 +8,7 @@
   </head>
   <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,18 +31,21 @@
         </div>
       </nav>
     <div>
-      <table clas="table table-striped table-hover">
+	<table class="table table-hover">
         <thead>
           <tr>
-            <th>Sender Name</th>
-            <th>Invited Name</th>
-            <th>Message</th>
-            <th>Status</th>
+            <th scope="col">Invited</th>
+            <th scope="col">Id</th>
+            <th scope="col">Sender Name</th>
+            <th scope="col">Invited Name</th>
+            <th scope="col">Message</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
           {% for invitation in invitations %}
-          <tr>
+          <tr class="table-active">
+            <th scope="row"></th>
             <td>{{invitation.id}}</td>
             <td>{{invitation.senderName}}</td>
             <td>{{invitation.invitedName}}</td>
@@ -50,7 +53,6 @@
             <td>{{invitation.status}}</td>
             <td>
               <a href="" class="btn btn-success btn-xs">Accept/Decline</a>
-             
             </td>
           </tr>
           {% else %}
@@ -59,7 +61,6 @@
           </tr>
           {% endfor %}
         </tbody>
-      </table>
     </div>
   </body>
 </html>
