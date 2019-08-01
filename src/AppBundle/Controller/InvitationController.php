@@ -57,7 +57,21 @@ class InvitationController extends Controller
 		}		 
 	   	   return $this->render('AppBundle:Invitation:get_all_invitation.html.twig',['posts'=>$posts]);
     }
+	 /**
+     *  @Route("list/{id}", name="list")
+	 * 
+     */
+    public function listAction(Request $request)
+	{
+	   
+	   $em = $this->getDoctrine()->getManager();
+	     $query = $em->createQuery("SELECT i FROM AppBundle:Invitation i  WHERE i.senderName LIKE :filtertext");
+		 $query->setParameter('filtertext', '%' . $request->query->getAlnum('filter') . '%');
+		  $invitation = $query->getResult();
 
+	   
+	   	   return $this->render('AppBundle:Invitation:get_all_invitation.html.twig',['posts'=>$invitation]);
+    }
     /**
      * @Route("edit")
      */
