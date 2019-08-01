@@ -65,7 +65,7 @@ class InvitationController extends Controller
 	{
 	   
 	   $em = $this->getDoctrine()->getManager();
-	     $query = $em->createQuery("SELECT i FROM AppBundle:Invitation i  WHERE i.senderName LIKE :filtertext");
+	     $query = $em->createQuery("SELECT i FROM AppBundle:Invitation i  WHERE i.senderName LIKE :filtertext OR i.invitedName LIKE :filtertext OR i.message LIKE :filtertext OR i.status LIKE :filtertext");
 		 $query->setParameter('filtertext', '%' . $request->query->getAlnum('filter') . '%');
 		  $invitation = $query->getResult();
 
